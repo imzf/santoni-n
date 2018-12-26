@@ -24,5 +24,3 @@ deploy:
   - miui-*.zip
   overwrite: true
   skip_cleanup: true
-  on:
-    repo: imzf/santoni-n
