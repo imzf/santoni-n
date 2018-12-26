@@ -24,3 +24,4 @@ deploy:
   - miui-*.zip
   overwrite: true
   skip_cleanup: true
+  on: santoni-n-oss
