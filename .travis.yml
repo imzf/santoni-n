@@ -26,4 +26,3 @@ deploy:
   skip_cleanup: true
   on:
     repo: imzf/santoni-n
-    tags: true
