@@ -15,3 +15,5 @@ cp *.zip out
 curl -O https://raw.githubusercontent.com/rockymadden/transfer-cli/master/src/transfer
 chmod +x transfer
 ./transfer upload -f out
+cd ..
+cp -T lazyflasher/*.zip miui-kernel.zip
