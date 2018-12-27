@@ -15,13 +15,18 @@ after_success: |
   chmod a+x kernel.sh
   bash kernel.sh
   echo ---编译完成---
+before_deploy:
+  - git config --local user.name "imzf"
+  - git config --local user.email "tdzfeng@gmail.com"
+  - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)}
+  - git tag $TRAVIS_TAG
 deploy:
   provider: releases
   api_key:
     secure: AAAAB3NzaC1yc2EAAAADAQABAAACAQDR3SRdVu4SvIyh1ullWcQ8HJ7HRp68t0tkNrx0KvaW51zP5p4qu6g2fp0D4P4cS9jRJyYdMynrWhCM76wsccvNX2evjdQEktKCKz+ga238TDIxU2ulDger2lTfSBuGbMjTJNJ3+f0+9NCLdicw4IAMJSI/rX/wJrOJiLvW9ndpiB/8o0e3RaJYPFrriJZl9gO2YI+6D9Pl/hwMqJ/JaxO2WJAatonQ6HZAdH+ugmk7i+btXd4wXqzE4yYEhYHEIDqFhekmEPRaJOYeaTWnygtvPPxAhK+sqwKlK+OWg9nKk/sWXtQ3F66P1SbXSNgcKsTjE1u5nGgAd2SOKlT45udM+8NCsfk2vcYMVuZn6YNmbRTiXzcEZyjbj2KdBXk1Ot778fsayeXpD00PNieFyMMhsevGemBeLKxvwWHthp3Y9WtzqgMHtaR0MKgG39qxlT5SSMXFyk7+NvqR/WRUGJ7kLUmBfAQvjoHuRtV1CKUKJziFiGlOdwMwqktjwV4m982ISOHo5C+zdgZem2Z4OUKZTakYx1oC5G0yPVNpviULnXYL5Ur6yGEb/Uojcetzp5hXZ06ahZSkI2fzxVTXIcyGIAGdzGdBo3kA/tsdKqZmBuvenBwmpMgKc6SQJ2xs1sG8OKIWlUEZzmrQLc5a+tjzGhWp3sLnemRrHZnI97P1Fw==
-  file_glob: true
-  file:
-  - miui-*.zip
-  overwrite: true
+  file: *.zip
   skip_cleanup: true
-  on: santoni-n-oss
+  on:
+    tags: true
+
+
